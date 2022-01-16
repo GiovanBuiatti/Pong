@@ -36,10 +36,7 @@ class Tableau1 extends Phaser.Scene {
         this.balle.setVelocityY(Phaser.Math.Between(200,-200))
 
 
-        this.physics.add.collider(this.balle,this.bas);
-        this.physics.add.collider(this.balle,this.haut);
-        this.physics.add.collider(this.balle,this.gauche);
-        this.physics.add.collider(this.balle,this.droite);
+
 
         //raquette gauche
 
@@ -55,6 +52,11 @@ class Tableau1 extends Phaser.Scene {
         this.droite.body.setAllowGravity(false);
         this.droite.setImmovable(true);
         this.initKeyboard()
+
+        this.physics.add.collider(this.balle,this.bas);
+        this.physics.add.collider(this.balle,this.haut);
+        this.physics.add.collider(this.balle,this.gauche);
+        this.physics.add.collider(this.balle,this.droite);
 
     }
     initKeyboard(){
