@@ -13,6 +13,8 @@ class Tableau1 extends Phaser.Scene {
 
         this.container=this.add.container(0,0);
 
+
+
         //barre du haut
 
         this.haut=this.physics.add.image(0,0,'carre').setOrigin(0,0);
@@ -51,13 +53,34 @@ class Tableau1 extends Phaser.Scene {
         this.droite.setDisplaySize(this.largeur1,this.hauteur1);
         this.droite.body.setAllowGravity(false);
         this.droite.setImmovable(true);
-        this.initKeyboard()
 
+        let me = this;
+        this.physics.add.collider(this.balle, this.droite, function(){
+            console.log('touche droit');
+            me.rebond(me.droite);
+        });
         this.physics.add.collider(this.balle,this.bas);
         this.physics.add.collider(this.balle,this.haut);
         this.physics.add.collider(this.balle,this.gauche);
         this.physics.add.collider(this.balle,this.droite);
 
+        this.initKeyboard();
+
+
+    }
+
+    rebond(raquette){
+        console.log(raquette.y);
+        console.log(this.balle.y);
+        console.log(this.balle.y-raquette.y);
+        let hauteur1 = raquette.displayHeight;
+
+        let positionRelativeRaquette = (this.balle.y - raquette.y);
+
+        positionRelativeRaquette = (positionRelativeRaquette / hauteur1);
+        positionRelativeRaquette = positionRelativeRaquette*2-1;
+
+        this.balle.setVelocityY(this.balle.body.velocity.y + positionRelativeRaquette * 50);
     }
     initKeyboard(){
         let me=this;
@@ -109,14 +132,12 @@ class Tableau1 extends Phaser.Scene {
 
 
     update() {
-        if(this.balle.x > this.largeur){
-            this.balle.x = 0;
-        }
-        if(this.y < 0){
-            this.balle.y = 0
-        }
-        if (this.balle.y > this.hauteur){
-            this.balle.y = this.hauteur
+        if(this.balle.x>=this.largeur || this.balle.x<=0){
+            this.balle.x = this.largeur/2
+            this.balle.y = this.hauteur/2
+            this.speedX = 0
+            this.balle.setVelocity(500*Phaser.Math.Between(-1,1))
+            this.balle.setVelocityY(Phaser.Math.Between(-500, 500))
         }
     }
 }
