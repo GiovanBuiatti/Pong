@@ -2,6 +2,7 @@ body{
     font-family: Arial, sans-serif;
     font-size: 12px;
     background-color: #000000;
+    background-image: url(https://hdwallsource.com/img/2019/7/hollow-knight-silksong-video-game-wallpaper-69243-71597-hd-wallpapers.jpg);
     text-align: center;
 }
 a{
@@ -15,7 +16,7 @@ a:hover{
     text-decoration: underline;
 }
 a:visited{
-    color: #880000;
+    color: #ffffff;
 }
 #game{
     margin-bottom: 10px;
@@ -35,15 +36,15 @@ canvas{
     display: flex;
     justify-content: center;
     position: absolute;
-    top: 0;
-    width: 100%;
+    top: 700px;
+    width: 95.5%;
 }
 
 .score{
-    color:#0f0
+    color:#ffffff
 }
 .name{
-    font-size: 3vw;
+    font-size: 2vw;
 }
 
 #scores >* {

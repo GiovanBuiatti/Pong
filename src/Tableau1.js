@@ -5,10 +5,9 @@ class Tableau1 extends Phaser.Scene{
         this.load.image('square','assets/hollowKnightAsset.png');
         this.load.image('littleSquare','assets/hollowKnightRaquette.png');
         this.load.image('circle','assets/cercle.png');
+        this.load.image('white','assets/otherAnim/white1.png')
 
-        for(let i=1;i<=10;i++){
-            this.load.image('white'+i, 'assets/otherAnim/white'+i+'.png');
-       }
+
         for(let e=1;e<=2;e++){
             this.load.image('balle'+e, 'assets/balleTete/balle'+e+'.png');
         }
@@ -29,7 +28,7 @@ class Tableau1 extends Phaser.Scene{
 
         //------------------ANIM HEAD------------------
 
-        this.balle = this.physics.add.sprite(this.largeur/2, this.hauteur/2, 'balle')
+        this.balle = this.physics.add.sprite(this.largeur/2, this.hauteur/2, 'balle1')
         this.anims.create({
             key: 'wink',
             frames: [
@@ -37,10 +36,10 @@ class Tableau1 extends Phaser.Scene{
                 {key:'balle2'},
             ],
             frameRate: 1,
-            repeat: -1
+            repeat: 1,
         });
-        this.balle.play('wink');
         this.balle.setDisplaySize(20, 20)
+        this.balle.body.setSize(20, 20);
         this.balle.body.setBounce(1,1);
         this.balle.body.setAllowGravity(false)
 
@@ -109,39 +108,24 @@ class Tableau1 extends Phaser.Scene{
         }
 
 
-        this.joueurGauche = new Joueur('Silk Song','joueurGauche')
-        this.joueurDroite = new Joueur('Hollow Knight','joueurDroite')
+        this.joueurGauche = new Joueur('Hollow Knight','joueurGauche')
+        this.joueurDroite = new Joueur('Silk Song','joueurDroite')
         console.log(this.joueurGauche)
+
+        let particles2 = this.add.particles('white');
+        let particle=particles2.createEmitter({
+            alpha: { start: 0.1, end: 0 },
+            scale: { start: 0.4, end: 0.1},
+            //tint: { start: 0xff945e, end: 0xff945e },
+            blendMode: 'ADD',
+            frequency: 2,
+            x: me.balle.x,
+            y: this.balle.y
+        });
+        particle.startFollow(this.balle)
 
         this.balleAucentre();
         this.initKeyboard()
-
-        //------------------ANIM PARTICULES------------------
-
-        this.particules = this.add.sprite(0, 0, 'white').setOrigin(0,0);
-        this.anims.create({
-            key: 'whiteParticules',
-            frames: [
-                {key:'white1'},
-                {key:'white2'},
-                {key:'white3'},
-                {key:'white4'},
-                {key:'white5'},
-                {key:'white6'},
-                {key:'white7'},
-                {key:'white8'},
-                {key:'white9'},
-                {key:'white10'},
-            ],
-            frameRate: 16,
-            repeat: -1
-        });
-        this.particules.play('whiteParticules');
-
-
-
-
-
 
 
     }
@@ -158,6 +142,7 @@ class Tableau1 extends Phaser.Scene{
         positionRelativePlayers = positionRelativePlayers*2-1;
 
         this.balle.setVelocityY(this.balle.body.velocity.y + positionRelativePlayers * 50);
+        this.balle.play('wink');
 
     }
 
@@ -166,7 +151,7 @@ class Tableau1 extends Phaser.Scene{
         this.balle.y = this.hauteur/2
         this.speedX = 0
 
-        this.balle.setVelocityX(Math.random()>0.5?-100:100)
+        this.balle.setVelocityX(Math.random()>0.5?-300:300)
         this.balle.setVelocityY(0)
     }
 
