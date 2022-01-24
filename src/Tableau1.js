@@ -3,7 +3,7 @@ class Tableau1 extends Phaser.Scene{
 
     preload(){
         this.load.image('square','assets/hollowKnightAsset.png');
-        this.load.image('raquette','assets/hollowKnightRaquette.png');
+        this.load.image('raquette','assets/hollowKnightraquette.png');
         this.load.image('circle','assets/cercle.png');
         this.load.image('white','assets/otherAnim/white1.png')
 
@@ -151,7 +151,7 @@ class Tableau1 extends Phaser.Scene{
         this.balle.y = this.hauteur/2
         this.speedX = 0
 
-        this.balle.setVelocityX(Math.random()>0.5?-300:300)
+        this.balle.setVelocityX(Math.random()>0.5?-400:400)
         this.balle.setVelocityY(0)
     }
 
