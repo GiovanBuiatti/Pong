@@ -57,12 +57,12 @@ class Tableau1 extends Phaser.Scene{
         this.bas.setImmovable(true);
 
 
-        this.player1 = this.physics.add.sprite(50, 360, 'raquette')
+        this.player1 = this.physics.add.sprite(50, 360, 'raquette').setOrigin(0, 0)
         this.player1.setDisplaySize(20, 100)
         this.player1.body.setAllowGravity(false)
 
 
-        this.player2 = this.physics.add.sprite(920, 360, 'raquette')
+        this.player2 = this.physics.add.sprite(920, 360, 'raquette').setOrigin(0, 0)
         this.player2.setDisplaySize(20, 100)
         this.player2.body.setAllowGravity(false)
         this.player2.flipX=true;
