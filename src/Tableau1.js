@@ -110,6 +110,7 @@ class Tableau1 extends Phaser.Scene{
 
         this.joueurGauche = new Joueur('Hollow Knight','joueurGauche')
         this.joueurDroite = new Joueur('Silk Song','joueurDroite')
+        window.toto=this.joueurGauche;
         console.log(this.joueurGauche)
 
         let particles2 = this.add.particles('white');

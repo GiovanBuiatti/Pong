@@ -3,7 +3,12 @@ body{
     font-size: 12px;
     background-color: #000000;
     background-image: url(https://hdwallsource.com/img/2019/7/hollow-knight-silksong-video-game-wallpaper-69243-71597-hd-wallpapers.jpg);
+    background-size: cover;
+    overflow:hidden;
     text-align: center;
+    height: 100vh;
+    width: 100vw;
+    background-position: center;
 }
 a{
     color: #808080;
