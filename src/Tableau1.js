@@ -38,10 +38,11 @@ class Tableau1 extends Phaser.Scene{
             frameRate: 1,
             repeat: 1,
         });
-        this.balle.setDisplaySize(20, 20)
-        this.balle.body.setSize(20, 20);
-        this.balle.body.setBounce(1,1);
-        this.balle.body.setAllowGravity(false)
+            this.balle.setDisplaySize(20, 20)
+            this.balle.body.setSize(20, 20);
+            this.balle.body.setBounce(1, 1);
+            this.balle.body.setAllowGravity(false)
+
 
         this.haut = this.physics.add.sprite(0, 0, 'square').setOrigin(0, 0)
         this.haut.setDisplaySize(this.largeur, 20)
@@ -125,8 +126,18 @@ class Tableau1 extends Phaser.Scene{
         });
         particle.startFollow(this.balle)
 
+
+
         this.balleAucentre();
         this.initKeyboard()
+
+        this.tweens.add({
+            targets:[this.balle],
+            rotation: 6,
+            ease :'Repeat',
+            repeat:1000000,
+            duration:1000,
+        })
 
 
     }
@@ -152,8 +163,11 @@ class Tableau1 extends Phaser.Scene{
         this.balle.y = this.hauteur/2
         this.speedX = 0
 
-        this.balle.setVelocityX(Math.random()>0.5?-400:400)
+        this.balle.setVelocityX(Math.random()>0.5?-300:300)
         this.balle.setVelocityY(0)
+
+        this.player1.y=this.hauteur/2-50
+        this.player2.y=this.hauteur/2-50
     }
 
     /**
@@ -174,6 +188,7 @@ class Tableau1 extends Phaser.Scene{
         if(this.balle.x<0){
             this.win(this.joueurDroite);
         }
+
         this.player1.y += this.player1Speed
         this.player2.y += this.player2Speed
     }
