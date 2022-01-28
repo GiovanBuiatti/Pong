@@ -5,7 +5,9 @@ class Tableau1 extends Phaser.Scene{
         this.load.image('square','assets/hollowKnightAsset.png');
         this.load.image('raquette','assets/hollowKnightraquette.png');
         this.load.image('circle','assets/cercle.png');
-        this.load.image('white','assets/otherAnim/white1.png')
+        this.load.image('white','assets/otherAnim/white1.png');
+        this.load.audio('music', ['assets/hollowKnightMusic.mp3']);
+
 
         for(let i=1;i<=3;i++){
             this.load.image('bee'+i, 'assets/beeAnim/Bee'+i+'.png');
@@ -192,6 +194,11 @@ class Tableau1 extends Phaser.Scene{
             loop: -1,
             yoyo: true,
         });
+
+        this.musicBg=this.sound.add('music')
+
+        this.musicBg.play()
+        this.musicBg.volume=0.3
 
 
     }
