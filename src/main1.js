@@ -5,14 +5,18 @@ let gameConfig = {
     backgroundColor: '#00000',
     parent: 'game',
     disableWebAudio: true,
+
     physics: {
         default: 'arcade',
+
         arcade: {
+
 
 
         }
     },
     scene: new Tableau1()
+
 
 };
 let game = new Phaser.Game(gameConfig);

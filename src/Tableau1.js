@@ -7,6 +7,9 @@ class Tableau1 extends Phaser.Scene{
         this.load.image('circle','assets/cercle.png');
         this.load.image('white','assets/otherAnim/white1.png')
 
+        for(let i=1;i<=3;i++){
+            this.load.image('bee'+i, 'assets/beeAnim/bee'+i+'.png');
+        }
 
         for(let e=1;e<=2;e++){
             this.load.image('balle'+e, 'assets/balleTete/balle'+e+'.png');
@@ -25,6 +28,25 @@ class Tableau1 extends Phaser.Scene{
         }
         this.speedY = Phaser.Math.Between(-500, 500)
         this.maxspeed = 500
+        //------------------ANIM BEE------------------
+
+        this.abeille = this.physics.add.sprite(680,85, 'bee1')
+        this.abeille1 = this.physics.add.sprite(280,410, 'bee1')
+        this.anims.create({
+            key: 'fly',
+            frames: [
+                {key:'bee1'},
+                {key:'bee2'},
+                {key:'bee3'},
+            ],
+            frameRate: 16,
+            repeat: -1,
+        });
+        this.abeille.play('fly');
+        this.abeille1.play('fly');
+        this.abeille.setSize(100, 100);
+        this.abeille1.setSize(100, 100);
+
 
         //------------------ANIM HEAD------------------
 
@@ -70,6 +92,8 @@ class Tableau1 extends Phaser.Scene{
 
         this.player1.setImmovable(true)
         this.player2.setImmovable(true)
+        this.abeille.setImmovable(true)
+        this.abeille1.setImmovable(true)
 
         let me = this;
         this.physics.add.collider(this.player1, this.balle,function(){
@@ -79,6 +103,12 @@ class Tableau1 extends Phaser.Scene{
         this.physics.add.collider(this.player2, this.balle,function(){
             console.log('touche player 2')
             me.rebond(me.player2)
+        })
+        this.physics.add.collider(this.abeille, this.balle,function(){
+            me.rebond(me.abeille)
+        })
+        this.physics.add.collider(this.abeille1, this.balle,function(){
+            me.rebond(me.abeille1)
         })
 
         this.physics.add.collider(this.balle, this.bas)
@@ -91,6 +121,10 @@ class Tableau1 extends Phaser.Scene{
 
         this.physics.add.collider(this.haut, this.player2)
         this.physics.add.collider(this.bas, this.player2)
+
+        this.physics.add.collider(this.balle, this.abeille)
+        this.physics.add.collider(this.balle, this.abeille1)
+
 
         this.player1Speed = 0
         this.player2Speed = 0
@@ -128,16 +162,36 @@ class Tableau1 extends Phaser.Scene{
 
 
 
-        this.balleAucentre();
+
+            this.balleAucentre();
         this.initKeyboard()
 
         this.tweens.add({
             targets:[this.balle],
             rotation: 6,
             ease :'Repeat',
-            repeat:1000000,
+            repeat:-1,
             duration:1000,
         })
+
+        //--------------Tweens des abeilles---------------
+
+        this.tweens.add({
+            targets: this.abeille,
+            y: 400,
+            duration: 1300,
+            ease: 'Power2',
+            loop: -1,
+            yoyo: true,
+        });
+        this.tweens.add({
+            targets: this.abeille1,
+            y: 85,
+            duration: 1300,
+            ease: 'Power2',
+            loop: -1,
+            yoyo: true,
+        });
 
 
     }
