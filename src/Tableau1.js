@@ -8,7 +8,7 @@ class Tableau1 extends Phaser.Scene{
         this.load.image('white','assets/otherAnim/white1.png')
 
         for(let i=1;i<=3;i++){
-            this.load.image('bee'+i, 'assets/beeAnim/bee'+i+'.png');
+            this.load.image('bee'+i, 'assets/beeAnim/Bee'+i+'.png');
         }
 
         for(let e=1;e<=2;e++){
