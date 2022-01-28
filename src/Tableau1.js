@@ -199,7 +199,6 @@ class Tableau1 extends Phaser.Scene{
 
         this.musicBg.play()
         this.musicBg.volume=0.15
-
     }
 
     rebond(players){
